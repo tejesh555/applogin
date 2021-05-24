@@ -1,3 +1,1 @@
 # Java app login page
-
-
