@@ -23,25 +23,27 @@ pipeline {
 
         stage ("publish") {
             steps {
-                try {
-                    rtUpload ( 
-                        serverId: 'myjfrog',
-                        spec: '''
-                              {
-                                  "files": [
-                                      {
-                                          "pattern": "target/*.war",
-                                          "target": "myapp/"
-                                      }
-                                  ]
-                              }
-                        ''',
-                        buildName: "${JOB_NAME}",
-                        buildNumber: "${BUILD_NUMBER}"
-                    )
-                }
-                catch(Exception ex) {
-                    println "unable to push the artifact kindly check the configuration"
+                step {
+                    try {
+                        rtUpload ( 
+                            serverId: 'myjfrog',
+                            spec: '''
+                                  {
+                                      "files": [
+                                          {
+                                              "pattern": "target/*.war",
+                                              "target": "myapp/"
+                                          }
+                                      ]
+                                  }
+                            ''',
+                            buildName: "${JOB_NAME}",
+                            buildNumber: "${BUILD_NUMBER}"
+                        )
+                    }
+                    catch(Exception ex) {
+                        println "unable to push the artifact kindly check the configuration"
+                    }
                 }
             }
         }
