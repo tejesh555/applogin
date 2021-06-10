@@ -23,7 +23,7 @@ pipeline {
 
         stage ("publish") {
             steps {
-                step {
+                script {
                     try {
                         rtUpload ( 
                             serverId: 'myjfrog',
