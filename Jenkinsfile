@@ -7,23 +7,13 @@ pipeline {
         
         stage ("git clone project url") {
             steps {
-                dir ('app')
                 git url: 'https://github.com/tejesh555/applogin.git'
-                sh "ls -all"
-            }
-        }
-        
-        stage ("git clone ansible-url") {
-            steps {
-                dir ('ansible')
-                git url: "https://github.com/tejesh555/ansible1.git"
                 sh "ls -all"
             }
         }
 
         stage ("build") {
             steps {
-                dir ('app')
                 sh "mvn clean install"
             }
         }
@@ -64,8 +54,7 @@ pipeline {
 
         stage ("deploy") {
             steps {
-                dir ('ansible')
-                sh "ansible-playbook -i tom_host cd.yml"
+                sh "ansible-playbook -i /home/devops/ansible1/tom_host /home/devops/ansible1/cd.yml"
             }
         }
 
