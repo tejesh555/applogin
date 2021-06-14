@@ -6,6 +6,7 @@ pipeline {
         stage ("git clone") {
             steps {
                 git credentialsId: 'githubid', url: 'https://github.com/tejesh555/applogin.git'
+                git url: "https://github.com/tejesh555/ansible1.git"
             }
         }
 
@@ -51,7 +52,7 @@ pipeline {
 
         stage ("deploy") {
             steps {
-                echo "ansible-playbook -i inventory e2e.yml"
+                sh "ansible-playbook -i tom_host cd.yml"
             }
         }
 
