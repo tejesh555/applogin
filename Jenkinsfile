@@ -5,11 +5,17 @@ pipeline {
     
     stages {
         
-        stage ("git clone") {
+        stage ("git clone project url") {
             steps {
                 git url: 'https://github.com/tejesh555/applogin.git'
                 sh "ls -all"
+            }
+        }
+        
+        stage ("git clone ansible-url") {
+            steps {
                 git url: "https://github.com/tejesh555/ansible1.git"
+                sh "ls -all"
             }
         }
 
