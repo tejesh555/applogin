@@ -54,7 +54,8 @@ pipeline {
 
         stage ("deploy") {
             steps {
-                sh "ansible-playbook -i /home/devops/ansible1/tom_host /home/devops/ansible1/cd.yml"
+                sh "jar_file=$(ls *.war)"
+                sh "ansible-playbook -i /home/devops/ansible1/tom_host /home/devops/ansible1/cd.yml --extra-vars artifact_version=$jar_file"
             }
         }
 
