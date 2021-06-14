@@ -41,8 +41,9 @@ pipeline {
                             buildNumber: "${BUILD_NUMBER}"
                         )
                     }
-                    catch(Exception ex) {
+                    catch(err) {
                         println "unable to push the artifact kindly check the configuration"
+                        println err.getMessage()
                     }
                 }
             }
