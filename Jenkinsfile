@@ -7,7 +7,8 @@ pipeline {
         
         stage ("git clone") {
             steps {
-                git credentialsId: 'githubid', url: 'https://github.com/tejesh555/applogin.git'
+                git url: 'https://github.com/tejesh555/applogin.git'
+                sh "ls -all"
                 git url: "https://github.com/tejesh555/ansible1.git"
             }
         }
