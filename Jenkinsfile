@@ -63,7 +63,7 @@ pipeline {
         stage ("deploy") {
             steps {
                script {
-                    if ( "${git_branch}" == "master") {
+                    if ( "${git_branch}".contains("master")) {
                         sh "ansible-playbook -i /tmp/ansible1/host.prod /tmp/ansible1/end-end.yml"
                     }
                     else if ( "${git_branch}" == "INT") {
