@@ -72,7 +72,7 @@ pipeline {
                        sh "ansible-playbook -i host.${git_branch} end-end.yml"
                     }
                     else {
-                        sh "echo "deploy fail""
+                        sh "echo "deploy fail"
                     }
                 }
             }
