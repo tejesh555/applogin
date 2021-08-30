@@ -10,12 +10,14 @@ pipeline {
     stages {
         stage ("clone") {
             steps {
-                
+               
                 git  url: 'https://github.com/tejesh555/applogin.git'
-                sh """
+                 sh """
+                   rm -rf /tmp/ansible1
                   cd /tmp
                   git clone https://github.com/tejesh555/ansible1.git
                   """
+               }
             }
         }
 
