@@ -10,9 +10,12 @@ pipeline {
     stages {
         stage ("clone") {
             steps {
+                
                 git  url: 'https://github.com/tejesh555/applogin.git'
-                sh "rm -rf .git"
-                git  url: 'https://github.com/tejesh555/ansible1.git'
+                sh """
+                  cd /tmp
+                  git clone https://github.com/tejesh555/ansible1.git
+                  """
             }
         }
 
@@ -60,7 +63,7 @@ pipeline {
             steps {
                script {
                     if ( "${git_branch}" == "master") {
-                        sh "ansible-playbook -i host.prod end-end.yml"
+                        sh "ansible-playbook -i /tmp/ansible1/host.prod /tmp/ansible1/end-end.yml"
                     }
                     else if ( "${git_branch}" == "INT") {
                         sh "ansible-playbook -i host.${git_branch} end-end.yml"
