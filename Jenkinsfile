@@ -17,7 +17,6 @@ pipeline {
                   cd /tmp
                   git clone https://github.com/tejesh555/ansible1.git
                   """
-               }
             }
         }
 
