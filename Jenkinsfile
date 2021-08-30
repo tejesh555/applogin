@@ -58,21 +58,7 @@ pipeline {
         stage ("deploy") {
             steps {
                 script {
-                    if ( "${git_branch}" == "master") {
-                        sh "ansible-playbook -i host.${git_branch} end-end.yml"
-                    }
-                    else if ( "${git_branch}" == "INT") {
-                        sh "ansible-playbook -i host.${git_branch} end-end.yml
-                    }
-                    else if ( "${git_branch}" == "UAT") {
-                       sh "ansible-playbook -i host.${git_branch} end-end.yml
-                    }                    
-                    else if ( "${git_branch}" == "develop") {
-                       sh "ansible-playbook -i host.${git_branch} end-end.yml
-                    }
-                    else {
-                        sh "ansible-playbook -i host.${git_branch} end-end.yml
-                    }
+                   sh "ansible-playbook -i host.prod end-end.yml"
                 }
             }
         }
