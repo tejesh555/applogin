@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage ("clone") {
             steps {
-                git credentialsId: 'github', url: 'https://github.com/tejesh555/applogin.git'
+                git  url: 'https://github.com/tejesh555/applogin.git'
+                sh "rm -rf .git"
+                git  url: 'https://github.com/tejesh555/ansible1.git'
             }
         }
 
@@ -32,7 +34,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage ("publish") {
             steps {
                 rtUpload (
@@ -51,24 +53,25 @@ pipeline {
                 )
             }
         }
+        */
 
         stage ("deploy") {
             steps {
                 script {
                     if ( "${git_branch}" == "master") {
-                        println "this is  master"
+                        sh "ansible-playbook -i host.${git_branch} end-end.yml"
                     }
                     else if ( "${git_branch}" == "INT") {
-                        println "this is  INT"
+                        sh "ansible-playbook -i host.${git_branch} end-end.yml
                     }
                     else if ( "${git_branch}" == "UAT") {
-                        println "this is UAT"
+                       sh "ansible-playbook -i host.${git_branch} end-end.yml
                     }                    
                     else if ( "${git_branch}" == "develop") {
-                        println "this is develop"
+                       sh "ansible-playbook -i host.${git_branch} end-end.yml
                     }
                     else {
-                        println "this is wrong"
+                        sh "ansible-playbook -i host.${git_branch} end-end.yml
                     }
                 }
             }
