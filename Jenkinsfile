@@ -13,7 +13,7 @@
             }
             stage ("test") {
                 steps {
-                    echo "test"
+                    echo "test in dev"
                 }
             }
             stage ("publish") {
