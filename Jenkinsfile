@@ -16,7 +16,7 @@
                     echo "test"
                 }
             }
-            stage ("jfrog") {
+            stage ("publish") {
                 steps {
                     script {
                         rtUpload (
@@ -34,6 +34,11 @@
                         )
                     }
                 }
+            }
+            stage ("deploy") {
+                steps {
+                    sh "ansible-playbook -i inventory playbook.yml"
+                }    
             }
         }
     }
