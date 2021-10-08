@@ -42,7 +42,7 @@ pipeline {
                 sh "mkdir ansible"
                 dir('ansible') {
                     sh "pwd"
-                    git url: 
+                    git url: https://github.com/tejesh555/ansible2.git
                 }
                 sh "ansible-playbook -i hosts e2e.yml"
             }    
