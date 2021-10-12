@@ -44,9 +44,14 @@ pipeline {
                         sh "pwd"
                         git url: 'https://github.com/tejesh555/ansible2.git'
                     }
-                    sh "ansible-playbook -i ansible/hosts ansible/e2e.yml"
+                    sh "ansible-playbook -i ansible/host ansible/e2e.yml"
                 }
             }    
+        }
+    }
+    post { 
+        always { 
+            cleanWs()
         }
     }
 }
