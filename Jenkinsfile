@@ -37,14 +37,15 @@ pipeline {
             }
         } */
         stage ("deploy") {
-//            agent {label 'ansible'}
             steps {
-                sh "mkdir ansible"
-                dir('ansible') {
-                    sh "pwd"
-                    git url: https://github.com/tejesh555/ansible2.git
+                script {
+                    sh "mkdir ansible"
+                    dir('ansible') {
+                        sh "pwd"
+                        git url: 'https://github.com/tejesh555/ansible2.git'
+                    }
+                    sh "ansible-playbook -i ansible/hosts ansible/e2e.yml"
                 }
-                sh "ansible-playbook -i ansible/hosts ansible/e2e.yml"
             }    
         }
     }
