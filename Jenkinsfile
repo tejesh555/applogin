@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'ansible'}
     stages {
         stage ("clone") {
             steps {
@@ -37,7 +37,7 @@ pipeline {
             }
         } */
         stage ("deploy") {
-            agent {label 'ansible'}
+//            agent {label 'ansible'}
             steps {
                 sh "mkdir ansible"
                 dir('ansible') {
