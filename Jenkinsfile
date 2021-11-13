@@ -20,12 +20,12 @@ pipeline {
             steps {
                 script {
                     rtUpload (
-                        serverId: 'myjfrog',
+                        serverId: 'my-jfrog',
                         spec: '''{
                             "files": [
                                 {
                                 "pattern": "target/*.war",
-                                "target": "applogin"
+                                "target": "myapp"
                                 }
                             ]
                         }''',
