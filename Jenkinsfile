@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'ansible'}
+    agent any
     stages {
         stage ("clone") {
             steps {
@@ -16,7 +16,6 @@ pipeline {
                 echo "test this is in master"
             }
         }
-        /*
         stage ("publish") {
             steps {
                 script {
@@ -35,7 +34,13 @@ pipeline {
                     )
                 }
             }
-        } */
+        } 
+        stage ("deploy") {
+            steps {
+                println "deploy"
+            }
+        }
+        /*
         stage ("deploy") {
             steps {
                 script {
@@ -47,8 +52,8 @@ pipeline {
                     sh "ansible-playbook -i ansible/host ansible/e2e.yml"
                 }
             }    
-        }
-    }
+        } */
+    } 
     post { 
         always { 
             cleanWs()
