@@ -4,7 +4,7 @@
     <groupId>com.applogin</groupId>
     <artifactId>applogin</artifactId>
     <packaging>war</packaging>
-    <version>1.2</version>
+    <version>1.0</version>
     <name>Account Registration Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
