@@ -1,5 +1,7 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
-    agent any
+    agent {label "slave1"}
     stages {
         stage ("clone") {
             steps {
@@ -16,7 +18,7 @@ pipeline {
                 echo "test this is in master"
             }
         }
-        stage ("publish") {
+/*       stage ("publish") {
             steps {
                 script {
                     rtUpload (
@@ -34,13 +36,7 @@ pipeline {
                     )
                 }
             }
-        } 
-        stage ("deploy") {
-            steps {
-                println "deploy"
-            }
-        }
-        /*
+        } */
         stage ("deploy") {
             steps {
                 script {
@@ -52,7 +48,7 @@ pipeline {
                     sh "ansible-playbook -i ansible/host ansible/e2e.yml"
                 }
             }    
-        } */
+        }
     } 
     post { 
         always { 
