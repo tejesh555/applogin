@@ -1,9 +1,7 @@
-properties([pipelineTriggers([githubPush()])])
-
 pipeline {
-    agent {label "slave1"}
+    agent {label "my-agent"}
     stages {
-        stage ("clone") {
+        stage ("git clone") {
             steps {
                 git url: 'https://github.com/tejesh555/applogin.git'
             }
@@ -15,44 +13,30 @@ pipeline {
         }
         stage ("test") {
             steps {
-                echo "test this is in master"
+                println "test"
             }
         }
-/*       stage ("publish") {
+        stage ("publish") {
             steps {
                 script {
                     rtUpload (
                         serverId: 'my-jfrog',
-                        spec: '''{
-                            "files": [
-                                {
-                                "pattern": "target/*.war",
-                                "target": "myapp"
-                                }
-                            ]
-                        }''',
-                        buildName: 'applogin',
+                        spec: '''
+                            {
+                                "files": [
+                                    {
+                                        "pattern": "target/*.war",
+                                        "target": "applogin"
+                                    }
+                                ]
+                            }
+                        ''',
+                        buildName: "${JOB_NAME}",
                         buildNumber: "${BUILD_NUMBER}"
                     )
                 }
             }
-        } */
-        stage ("deploy") {
-            steps {
-                script {
-                    sh "mkdir ansible"
-                    dir('ansible') {
-                        sh "pwd"
-                        git url: 'https://github.com/tejesh555/ansible2.git'
-                    }
-                    sh "ansible-playbook -i ansible/host ansible/e2e.yml"
-                }
-            }    
-        }
-    } 
-    post { 
-        always { 
-            cleanWs()
         }
     }
 }
+
