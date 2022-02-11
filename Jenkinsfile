@@ -22,6 +22,7 @@ pipeline {
                     -D sonar.projectKey=applogin \
                     -D sonar.exclusions=vendor/**,resources/**,**/*.java \
                     -D sonar.host.url=http://35.174.115.121:9000/"
+                    }
                 }
             }
         }
