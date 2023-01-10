@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent {label "my-agent"}
     stages {
         stage ("git clone") {
             steps {
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     rtUpload (
-                        serverId: 'my-jfrog',
+                        serverId: 'myjfrog',
                         spec: '''
                             {
                                 "files": [
