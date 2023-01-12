@@ -21,7 +21,7 @@ pipeline {
                             -D sonar.password=Nov@2022 \
                             -D sonar.projectKey=applogin \
                             -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-                            -D sonar.host.url=http://13.126.60.6:9000/"
+                            -D sonar.host.url=http://13.126.34.226:9000/"
                         }
                 }
             }
