@@ -1,5 +1,8 @@
 pipeline {
-    agent {label "my-slave"}
+   /* agent {
+        docker { image 'image_name' }
+    } */
+    agent {label "ec2-fleet"}
     stages {
         stage ("git clone") {
             steps {
