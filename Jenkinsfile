@@ -1,35 +1,23 @@
 pipeline {
-   /* agent {
-        docker { image 'image_name' }
-    } */
-    agent {label "ec2-fleet"}
-    stages {
-        stage ("git clone") {
-            steps {
-                git url: 'https://github.com/tejesh555/applogin.git'
+  agent {label 'myslave'}
+  
+  stages {
+      stage ("clone") {
+        steps {
+               git credentialsId: 'github_id', url: 'https://github.com/tejesh555/applogin.git'
             }
         }
-        stage ("build") {
-            steps {
+      stage ("build") {
+        steps {
                 sh "mvn clean install"
             }
-        }
+      }
         stage ("test") {
             steps {
-                script {
-                    def scannerHome = tool 'mysonarscanner';
-                            withSonarQubeEnv('mysonar') {
-                            sh "${scannerHome}/bin/sonar-scanner \
-                            -D sonar.login=admin \
-                            -D sonar.password=Nov@2022 \
-                            -D sonar.projectKey=applogin \
-                            -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-                            -D sonar.host.url=http://13.126.34.226:9000/"
-                        }
-                }
+                    println "test"
             }
         }
-        stage ("publish") {
+        stage ( "release") {
             steps {
                 script {
                     rtUpload (
@@ -50,6 +38,5 @@ pipeline {
                 }
             }
         }
-    }
+   }
 }
-
